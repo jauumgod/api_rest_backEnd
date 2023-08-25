@@ -5,18 +5,18 @@ import com.marketitems.dtos.UserDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity(name="users")
+@Entity()
 @Table(name = "users")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "user_id")
 
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long user_id;
 
     @Column(nullable = false)
     private String firstName;

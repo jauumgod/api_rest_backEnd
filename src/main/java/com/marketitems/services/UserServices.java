@@ -2,7 +2,6 @@ package com.marketitems.services;
 
 
 import com.marketitems.domain.user.User;
-import com.marketitems.dtos.ItemsDTO;
 import com.marketitems.dtos.UserDTO;
 import com.marketitems.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +22,7 @@ public class UserServices  {
 
     }
     public User findUserById(Long id) throws Exception{
-        return (User) this.repository.findUserById(id).orElseThrow(()-> new Exception("Usuario não encontrado\n"));
+        return (User) this.repository.findUserById(id).orElseThrow(()-> new Exception("Usuario não encontrado"));
     }
 
     public User createNewUser(UserDTO data){
@@ -33,7 +32,7 @@ public class UserServices  {
     }
 
     public List<User> getAllUsers(){
-        return this.repository.findAll();
+        return (List<User>) this.repository.findAll();
     }
     public void saveUser(User user){
         this.repository.save(user);
