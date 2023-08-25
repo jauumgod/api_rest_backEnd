@@ -3,6 +3,7 @@ package com.marketitems.services;
 
 import com.marketitems.domain.user.User;
 import com.marketitems.dtos.ItemsDTO;
+import com.marketitems.dtos.UserDTO;
 import com.marketitems.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,20 @@ public class UserServices  {
     @Autowired
     private UserRepository repository;
 
-    public void validateInsert(ItemsDTO items) throws Exception{
-        if(items.itemName().isEmpty()){
-            throw new Exception("item informado está vazio");
+    public void validateUser(UserDTO user) throws Exception{
+        if(user.email().isEmpty()){
+            throw new Exception("email inválido");
         }
 
+    }
+    public User findUserById(Long id) throws Exception{
+        return (User) this.repository.findUserById(id).orElseThrow(()-> new Exception("Usuario não encontrado\n"));
+    }
+
+    public User createNewUser(UserDTO data){
+        User newUser = new User(data);
+        this.saveUser(newUser);
+        return newUser;
     }
 
     public List<User> getAllUsers(){
