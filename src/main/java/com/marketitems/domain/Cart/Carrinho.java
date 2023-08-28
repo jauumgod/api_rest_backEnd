@@ -1,12 +1,20 @@
 package com.marketitems.domain.Cart;
 
 
-import com.marketitems.domain.items.Produto;
-import com.marketitems.domain.listadecompras.ListaDeCompras;
-import jakarta.persistence.*;
 
-@Entity
+
+import com.marketitems.dtos.CarrinhoDTO;
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity(name = "carrinho")
 @Table(name = "carrinho")
+@Getter
+@Setter
+@AllArgsConstructor
+@EqualsAndHashCode(of = "id")
+@NoArgsConstructor
+
 public class Carrinho {
 
     @Id
@@ -14,15 +22,12 @@ public class Carrinho {
 
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "id_produto")
-    private Produto produto;
+    private String nome;
 
-    @ManyToOne
-    @JoinColumn(name = "id_lista")
-    private ListaDeCompras listaDeCompras;
+    public Carrinho(CarrinhoDTO data){
+        this.nome = data.nome();
+    }
 
-    private int quantidade;
 
 }
 
