@@ -1,9 +1,9 @@
 package com.marketitems.repositories;
 
 
-import com.marketitems.domain.items.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.marketitems.domain.items.Produto;
 
 import java.util.Optional;
 
