@@ -1,37 +1,37 @@
 package com.marketitems.domain.items;
 
 
-import com.marketitems.dtos.ItemsDTO;
+import com.marketitems.dtos.ProdutosDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity(name = "items")
-@Table(name = "items")
+@Entity(name = "produto")
+@Table(name = "produto")
 @Getter
 @Setter
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 
-public class Items {
+public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
 
     private String itemName;
-    private BigDecimal amount;
+    private BigDecimal price;
     private int quantity;
 
     private LocalDateTime time_stamp;
 
 
-    public Items(ItemsDTO data){
+    public Produto(ProdutosDTO data){
         this.itemName = data.itemName();
-        this.amount = data.amount();
+        this.price = data.price();
         this.quantity = data.quantity();
     }
 }
