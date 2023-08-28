@@ -1,9 +1,9 @@
 package com.marketitems.controllers;
 
 
-import com.marketitems.domain.items.Items;
-import com.marketitems.dtos.ItemsDTO;
-import com.marketitems.services.ItemServices;
+import com.marketitems.domain.items.Produto;
+import com.marketitems.dtos.ProdutosDTO;
+import com.marketitems.services.ProdutoServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,19 +13,19 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/items")
-public class ItemsController {
+public class ProdutosController {
     @Autowired
-    private ItemServices itemServices;
+    private ProdutoServices produtoServices;
 
     @PostMapping
-    public ResponseEntity<Items> createItem(@RequestBody ItemsDTO itemsDTO){
-        Items newItems = itemServices.createNewItem(itemsDTO);
+    public ResponseEntity<Produto> createItem(@RequestBody ProdutosDTO itemsDTO){
+        Produto newItems = produtoServices.createNewItem(itemsDTO);
         return new ResponseEntity<>(newItems, HttpStatus.CREATED);
     }
 
     @GetMapping
-    public ResponseEntity<List<Items>> getAllItems(){
-        List<Items> items = this.itemServices.getAllItems();
+    public ResponseEntity<List<Produto>> getAllItems(){
+        List<Produto> items = this.produtoServices.getAllItems();
         return new ResponseEntity<>(items, HttpStatus.OK);
     }
 }
