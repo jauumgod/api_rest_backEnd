@@ -1,6 +1,8 @@
 package com.marketitems.domain.Cart;
 
 
+import com.marketitems.domain.items.Produto;
+import com.marketitems.domain.listadecompras.ListaDeCompras;
 import jakarta.persistence.*;
 
 @Entity
@@ -11,5 +13,22 @@ public class Carrinho {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
-    private String listname;
+
+    @ManyToOne
+    @JoinColumn(name = "id_produto")
+    private Produto produto;
+
+    @ManyToOne
+    @JoinColumn(name = "id_lista")
+    private ListaDeCompras listaDeCompras;
+
+    private int quantidade;
+
 }
+
+
+
+
+
+
+
