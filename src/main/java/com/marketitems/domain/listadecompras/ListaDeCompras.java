@@ -1,6 +1,6 @@
-package com.marketitems.domain.supermarket;
+package com.marketitems.domain.listadecompras;
 
-import com.marketitems.dtos.SuperMarketDTO;
+import com.marketitems.dtos.ListaDeComprasDTO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,15 +12,16 @@ import lombok.*;
 @EqualsAndHashCode(of = "id")
 @NoArgsConstructor
 
-public class SuperMarket {
+public class ListaDeCompras {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
-    private String nameSupermarket;
+    private String nomeLista;
 
-    public SuperMarket(SuperMarketDTO data){
-        this.nameSupermarket = data.nameSuperMarket();
+
+    public ListaDeCompras(ListaDeComprasDTO data){
+        this.nomeLista = data.nomeListaCompras();
     }
 }
