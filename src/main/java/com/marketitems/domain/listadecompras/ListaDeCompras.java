@@ -1,11 +1,19 @@
 package com.marketitems.domain.listadecompras;
 
-import com.marketitems.dtos.ListaDeComprasDTO;
-import jakarta.persistence.*;
-import lombok.*;
 
-@Entity(name = "supermarket")
-@Table(name = "supermarket")
+
+import com.marketitems.domain.items.Produto;
+import com.marketitems.dtos.ListaDeComprasDTO;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity(name = "lista_compras")
+@Table(name = "lista_compras")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -18,10 +26,37 @@ public class ListaDeCompras {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     private Long id;
-    private String nomeLista;
 
+    @ManyToOne
+    @JoinColumn(name = "id_produto")
+    private Produto produto;
+
+    @ManyToOne
+    @JoinColumn(name = "id_lista")
+    private ListaDeCompras listaDeCompras;
+
+
+    private int quantidade;
 
     public ListaDeCompras(ListaDeComprasDTO data){
-        this.nomeLista = data.nomeListaCompras();
+        this.produto = data.id_produto();
+        this.listaDeCompras = data.id_lista_compras();
+        this.quantidade = data.quantidade();
     }
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
